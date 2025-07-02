@@ -1,0 +1,155 @@
+/* reservaciones y verpago adaptado a tema Cabañas */
+
+/* Contenedor principal */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f1; /* fondo claro similar a admin-sidebar */
+  padding: 2rem;
+  color: #2e5339; /* verde oscuro texto */
+  margin: 0;
+}
+
+/* Header común para reservaciones y verpago */
+header {
+  background-color: #4e7b5a; /* verde medio */
+  color: #f0f4f1; /* blanco claro */
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  font-size: 1.5rem;
+  user-select: none;
+}
+
+/* Botón volver */
+.volver-btn, .btn-regresar {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #3a6046; /* verde oscuro botón */
+  border: none;
+  color: #f0f4f1;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(58, 96, 70, 0.5);
+}
+
+.volver-btn:hover, .btn-regresar:hover {
+  background-color: #2e5339;
+  box-shadow: 0 4px 12px rgba(46, 83, 57, 0.7);
+}
+
+/* Contenedor principal contenido */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff; /* blanco limpio */
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 0.8s ease-out forwards;
+}
+
+/* Animación */
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Títulos */
+h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #2e5339;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Tabla estilizada */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 1rem;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Encabezado de tabla */
+thead {
+  background-color: #4e7b5a; /* verde medio */
+  color: #f0f4f1; /* blanco claro */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+th, td {
+  padding: 0.8rem 1.2rem;
+  border: 1px solid #d0d0d0;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* Filas alternas */
+tbody tr:nth-child(even) {
+  background-color: #f7f9f7; /* tono muy suave verde claro */
+}
+
+/* Hover en filas para mejor UX */
+tbody tr:hover {
+  background-color: #e3f0df;
+  cursor: default;
+}
+
+/* Estados con colores destacados */
+.estado-confirmada {
+  color: #2e7d32; /* verde oscuro */
+  font-weight: 700;
+}
+
+.estado-pendiente {
+  color: #fbc02d; /* amarillo vibrante */
+  font-weight: 700;
+}
+
+.estado-cancelada {
+  color: #c62828; /* rojo intenso */
+  font-weight: 700;
+}
+
+/* Enlaces de volver */
+a.volver-btn-link {
+  display: block;
+  margin-top: 2rem;
+  text-align: center;
+  color: #4e7b5a;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a.volver-btn-link:hover {
+  color: #2e5339;
+}

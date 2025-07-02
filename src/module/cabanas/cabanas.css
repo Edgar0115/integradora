@@ -1,0 +1,153 @@
+.cabana {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 320px;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: filter 0.3s ease;
+}
+
+/* Opacidad reducida y filtro para cabañas desactivadas */
+.cabana.desactivada {
+  filter: grayscale(80%) brightness(0.85);
+  opacity: 0.7;
+}
+
+.cabana img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.contenido {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.contenido h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2e5339;
+}
+
+.contenido p {
+  margin: 0.25rem 0;
+  color: #4e7b5a;
+  flex-grow: 1;
+}
+
+/* Botones de control */
+.admin-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.admin-controls .btn {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white;
+  user-select: none;
+}
+
+/* Botón editar */
+.admin-controls .btn.editar {
+  background-color: #4e7b5a;
+}
+
+.admin-controls .btn.editar:hover {
+  background-color: #3a5a3e;
+}
+
+/* Botón desactivar */
+.admin-controls .btn.desactivar {
+  background-color: #d32f2f;
+}
+
+.admin-controls .btn.desactivar:hover {
+  background-color: #a72525;
+}
+
+/* Botón activar (cuando está desactivado) */
+.admin-controls .btn.activar {
+  background-color: #2e7d32;
+}
+
+.admin-controls .btn.activar:hover {
+  background-color: #245c25;
+}
+
+/* Estilos del formulario */
+.form-editar label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #2e5339;
+  font-size: 0.95rem;
+}
+
+.form-editar input[type="text"],
+.form-editar input[type="number"],
+.form-editar textarea {
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.form-editar textarea {
+  min-height: 60px;
+}
+
+.form-editar input[type="file"] {
+  margin-top: 0.3rem;
+}
+
+.botones-form {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.botones-form .btn {
+  flex: 1;
+  padding: 0.6rem;
+  font-weight: 700;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.botones-form .btn.guardar {
+  background-color: #4e7b5a;
+}
+
+.botones-form .btn.guardar:hover {
+  background-color: #3a5a3e;
+}
+
+.botones-form .btn.cancelar {
+  background-color: #d32f2f;
+}
+
+.botones-form .btn.cancelar:hover {
+  background-color: #a72525;
+}

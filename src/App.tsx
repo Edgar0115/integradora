@@ -1,36 +1,60 @@
-import { useState } from 'react'
-import { Button, Form, Input } from 'antd'
-import './App.css'
-import UserForm from './module/users/userForm'
-import  { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import OrderData from './module/order/OrderData'
-import ProductoData from './module/product/ProductData'
+import React, { useState, useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import VerPago from "./module/payments/VerPago";
+import CabanasPage from "./module/cabanas/CabanaList";
+import Reservaciones from "./module/Reservas/Reservaciones";
+import LoginAdmin from "./module/loginAdmin/LoginAdmin";
+import AdminMenu from "./components/AdminMenu";
+import Loader from "./components/Loader";
+import "./App.css";
 
 function App() {
-  //1.- obtener valor de la variable
-  //2.- Modificar el valor
-  const [count, setCount] = useState(5)
+  const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
-    <>
-      <Router>
-        <nav>
-          <ul>
-            <li><Link to="/users">Usuarios</Link></li>
-            <li><Link to="/products">Productos</Link></li>
-            <li><Link to="/orders">Ordenes</Link></li>
-          </ul>
-        </nav>
+    <div className="app-content">
+      {/* Mostrar menú sólo si está logueado */}
+      <AdminMenu isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
-        <Routes>
-          <Route path="/users" element={<UserForm />} />
-          <Route path="/products" element={<ProductoData />} />
-          <Route path="/orders" element={<OrderData />} />
-        </Routes>
-      </Router>
-      </>
-  )
+      <Routes>
+        {/* Si no está logueado, siempre mostrar LoginAdmin */}
+        {!isLoggedIn && (
+          <Route path="*" element={<LoginAdmin onLoginSuccess={handleLoginSuccess} />} />
+        )}
+
+        {/* Rutas protegidas */}
+        {isLoggedIn && (
+          <>
+            <Route path="/" element={<CabanasPage />} />
+            <Route path="/pagos" element={<VerPago />} />
+            <Route path="/reservas" element={<Reservaciones />} />
+            {/* Redirigir cualquier ruta desconocida a "/" */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </>
+        )}
+      </Routes>
+    </div>
+  );
 }
 
-
-export default App
+export default App;

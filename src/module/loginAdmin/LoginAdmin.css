@@ -1,0 +1,70 @@
+.login-logo {
+  width: 80px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.2rem auto;
+}
+.login-container {
+  max-width: 360px;
+  margin: 5rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2e5339; /* verde bosque */
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-container label {
+  font-weight: bold;
+  color: #2e5339;
+  font-size: 0.95rem;
+}
+
+.login-container input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #4e7b5a;
+  box-shadow: 0 0 5px #4e7b5a;
+}
+
+.login-container button {
+  padding: 0.7rem;
+  background-color: #4e7b5a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.login-container button:hover {
+  background-color: #3a6046;
+}
+
+.error-message {
+  color: #d32f2f;
+  text-align: center;
+  font-weight: bold;
+  margin-top: -0.5rem;
+}

@@ -1,0 +1,102 @@
+/* Botón hamburguesa (esquina superior izquierda) */
+.hamburger-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1100; /* Encima del menú lateral */
+  color: #2e5339;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.hamburger-toggle:hover {
+  color: #4e7b5a;
+}
+
+/* Menú lateral (cerrado por defecto) */
+.admin-sidebar {
+  position: fixed;
+  top: 0;
+  left: -270px; /* Oculto fuera del viewport */
+  width: 270px;
+  height: 100vh;
+  background-color: #f0f4f1;
+  color: #2e5339;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: left 0.3s ease-in-out, opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1050;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+
+  /* Oculto y no interactivo cuando cerrado */
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Menú abierto */
+.admin-sidebar.open {
+  left: 0;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Título del menú */
+.admin-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+  user-select: none;
+}
+
+/* Contenedor del menú */
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex-grow: 1;
+}
+
+/* Ítems del menú (enlaces o botones) */
+.admin-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2e5339;
+  background-color: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Iconos */
+.admin-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  color: #4e7b5a;
+  transition: color 0.3s ease;
+}
+
+/* Hover */
+.admin-menu-item:hover {
+  background-color: #4e7b5a;
+  color: #fff;
+}
+
+.admin-menu-item:hover .admin-icon {
+  color: #fff;
+}

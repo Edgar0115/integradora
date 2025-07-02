@@ -1,0 +1,141 @@
+/* CSS unificado para verpago y reservaciones */
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  padding: 2rem;
+  color: #4e342e;
+}
+
+/* Header */
+header {
+  background-color: #3e2723;
+  color: white;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botón regresar / volver */
+.btn-regresar, .volver-btn {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #6d4c41;
+  border: none;
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-regresar:hover, .volver-btn:hover {
+  background-color: #5a3e32;
+}
+
+/* Usuario admin (si aplica) */
+.user-admin {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  font-size: 1rem;
+  user-select: none;
+  color: #ffcc80;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Contenedor principal */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: aparecer 0.8s ease-out forwards;
+}
+
+@keyframes aparecer {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Títulos */
+h2 {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #4e342e;
+  font-weight: bold;
+}
+
+/* Tablas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #6d4c41;
+  color: white;
+}
+
+th, td {
+  padding: 0.7rem 1rem;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #4e342e;
+}
+
+/* Filas alternas */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Estados de reservas o pagos */
+.estado-confirmada, .pagado {
+  color: #388e3c; /* verde */
+  font-weight: bold;
+}
+
+.estado-pendiente, .pendiente {
+  color: #fbc02d; /* amarillo */
+  font-weight: bold;
+}
+
+.estado-cancelada {
+  color: #d32f2f; /* rojo */
+  font-weight: bold;
+}
+
+/* Enlaces volver */
+.volver, .volver-btn-link {
+  display: block;
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #6d4c41;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.volver:hover, .volver-btn-link:hover {
+  color: #5a3e32;
+}
