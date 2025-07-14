@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./AdminMenu.css";
 import {
   FiMenu,
-  FiHome,
+  FiPlusSquare,
   FiCreditCard,
   FiCalendar,
+  FiMessageSquare,
   FiLogOut
 } from "react-icons/fi";
 
@@ -21,6 +22,7 @@ const AdminMenu: React.FC<AdminMenuProps> = ({ isLoggedIn, onLogout }) => {
   if (!isLoggedIn) return null;
 
   const handleNavigate = (path: string) => {
+    console.log("➡️ handleNavigate a:", path);
     navigate(path);
     setOpen(false);
   };
@@ -41,9 +43,9 @@ const AdminMenu: React.FC<AdminMenuProps> = ({ isLoggedIn, onLogout }) => {
         <h2 className="admin-logo">ADMIN</h2>
 
         <nav className="admin-menu">
-          <button className="admin-menu-item" onClick={() => handleNavigate("/cabanas")}>
-            <FiHome className="admin-icon" />
-            <span className="admin-text">Cabañas</span>
+          <button className="admin-menu-item" onClick={() => handleNavigate("/agregar-cabana")}>
+            <FiPlusSquare className="admin-icon" />
+            <span className="admin-text">Agregar Cabaña</span>
           </button>
 
           <button className="admin-menu-item" onClick={() => handleNavigate("/pagos")}>
@@ -54,6 +56,11 @@ const AdminMenu: React.FC<AdminMenuProps> = ({ isLoggedIn, onLogout }) => {
           <button className="admin-menu-item" onClick={() => handleNavigate("/reservas")}>
             <FiCalendar className="admin-icon" />
             <span className="admin-text">Reservas</span>
+          </button>
+
+          <button className="admin-menu-item" onClick={() => handleNavigate("/resenas")}>
+            <FiMessageSquare className="admin-icon" />
+            <span className="admin-text">Reseñas</span>
           </button>
 
           <button

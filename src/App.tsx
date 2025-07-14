@@ -7,6 +7,8 @@ import LoginAdmin from "./module/loginAdmin/LoginAdmin";
 import AdminMenu from "./components/AdminMenu";
 import Loader from "./components/Loader";
 import "./App.css";
+import CrearCabaña from './module/cabanas/crearCabaña';
+import VerReseñas from "./module/Reseñas/VerReseñas";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -48,6 +50,8 @@ function App() {
             <Route path="/" element={<CabanasPage />} />
             <Route path="/pagos" element={<VerPago />} />
             <Route path="/reservas" element={<Reservaciones />} />
+            <Route path="/agregar-cabana" element={<CrearCabaña />} />
+            <Route path="/resenas" element={<VerReseñas />} />
             {/* Redirigir cualquier ruta desconocida a "/" */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </>

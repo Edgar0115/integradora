@@ -11,11 +11,11 @@ const pagos = [
 
 const VerPago = () => {
   return (
-    <div>
+    <div className="verpago-container">
       <header>
-        <Link to="/" className="btn-regresar">← Inicio</Link>
+        <Link to="/" className="btn-regresar" aria-label="Regresar a Inicio">← Inicio</Link>
         <h1>Pagos Realizados</h1>
-        <div className="user-admin">Admin</div>
+        <div className="user-admin" aria-label="Usuario administrador">Admin</div>
       </header>
 
       <main>
@@ -36,17 +36,20 @@ const VerPago = () => {
               <tr key={index}>
                 <td>{pago.cliente}</td>
                 <td>{pago.cabana}</td>
-                <td>{pago.fecha}</td>
+                <td>{new Date(pago.fecha).toLocaleDateString()}</td>
                 <td>${pago.monto.toLocaleString()}</td>
                 <td>{pago.metodo}</td>
-                <td className={pago.estado === "Pagado" ? "pagado" : "pendiente"}>
+                <td className={pago.estado.toLowerCase() === "pagado" ? "pagado" : "pendiente"}>
                   {pago.estado}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <Link to="/" className="volver">Volver a Inicio</Link>
+
+        <Link to="/" className="volver" aria-label="Volver a la página de inicio">
+          Volver a Inicio
+        </Link>
       </main>
     </div>
   );

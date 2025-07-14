@@ -7,7 +7,7 @@ import "./Loader.css";
 const containerVariants = {
   animate: {
     transition: {
-      staggerChildren: 0.4, // Cada icono empieza 0.7s después del anterior
+      staggerChildren: 0.4,
     },
   },
 };
@@ -17,30 +17,32 @@ const itemVariants = {
   animate: {
     scale: 1,
     opacity: 1,
-    transition: { duration: 0.8 }, // Cada icono tarda 1.2s
+    transition: { duration: 0.8 },
   },
 };
 
 const Loader: React.FC = () => {
   return (
     <div className="loader-container" role="alert" aria-busy="true" aria-live="polite">
-      <motion.div
-        className="loader-scene"
-        variants={containerVariants}
-        initial="initial"
-        animate="animate"
-      >
-        {[...Array(5)].map((_, i) => (
-          <motion.div
-            key={i}
-            className={`icon pino pino${i + 1}`}
-            variants={itemVariants}
-          >
-            <BsTree size={50} color="#2e5339" />
-          </motion.div>
-        ))}
-      </motion.div>
-      <p className="loader-text">Cargando ...</p>
+      <div className="loader-wrapper">
+        <motion.div
+          className="loader-scene"
+          variants={containerVariants}
+          initial="initial"
+          animate="animate"
+        >
+          {[...Array(5)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="pino"
+              variants={itemVariants}
+            >
+              <BsTree size={50} color="#2e5339" />
+            </motion.div>
+          ))}
+        </motion.div>
+        <p className="loader-text">Cargando...</p>
+      </div>
     </div>
   );
 };

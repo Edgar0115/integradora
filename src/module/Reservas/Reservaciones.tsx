@@ -1,5 +1,5 @@
 import React from "react";
-import "./reservaciones.css";
+import "./Reservaciones.css";
 import { Link } from "react-router-dom";
 
 type Reservacion = {

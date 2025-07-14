@@ -1,153 +1,190 @@
-.cabana {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  max-width: 320px;
-  margin: 1rem;
+/* Contenedor principal centrado */
+.admin-cabanas-view {
   display: flex;
   flex-direction: column;
-  transition: filter 0.3s ease;
+  align-items: center;
+  padding: 3rem;
+  background-color: #f0f4f3;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
-/* Opacidad reducida y filtro para cabañas desactivadas */
-.cabana.desactivada {
-  filter: grayscale(80%) brightness(0.85);
-  opacity: 0.7;
-}
-
-.cabana img {
+/* Contenedor con ancho limitado */
+.admin-cabanas-content {
   width: 100%;
-  height: 200px;
+  max-width: 1200px;
+}
+
+/* Encabezado */
+.admin-cabanas-header {
+  background-color: #2e5b3b;
+  color: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.admin-cabanas-header h1 {
+  font-size: 2.2rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Grid de cabañas */
+.admin-cabanas-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* Tarjeta de cabaña */
+.admin-cabanas-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-cabanas-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.admin-cabanas-card.inactivo {
+  opacity: 0.6;
+  filter: grayscale(60%);
+}
+
+/* Imagen */
+.admin-cabanas-card img {
+  width: 100%;
+  height: 180px;
   object-fit: cover;
 }
 
-.contenido {
-  padding: 1rem 1.25rem;
+/* Contenido */
+.admin-cabanas-card-content {
+  padding: 1.2rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 }
 
-.contenido h3 {
-  margin: 0 0 0.5rem 0;
-  color: #2e5339;
+.admin-cabanas-card-content h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+  color: #2e5b3b;
+  font-weight: 700;
 }
 
-.contenido p {
-  margin: 0.25rem 0;
-  color: #4e7b5a;
-  flex-grow: 1;
+.admin-cabanas-card-content p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
 }
 
-/* Botones de control */
-.admin-controls {
+.admin-cabanas-card-content .precio {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #4b715a;
+  margin-top: 0.5rem;
+}
+
+.admin-cabanas-card-content .cabana-detalles {
+  font-size: 0.9rem;
+  color: #6d4c41;
+  margin-top: 0.6rem;
+}
+
+/* Botones */
+.admin-cabanas-card-actions {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1rem;
+  margin: 1rem 0 0;
 }
 
-.admin-controls .btn {
-  flex: 1;
+.admin-cabanas-edit-btn {
+  background: none;
+  color: #2e5b3b;
+  border: 2px solid #2e5b3b;
   padding: 0.5rem 1rem;
+  border-radius: 6px;
   font-weight: 600;
-  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.admin-cabanas-edit-btn:hover {
+  background-color: #2e5b3b;
+  color: #fff;
+}
+
+.admin-cabanas-toggle {
+  background-color: #4b715a;
+  color: white;
   border: none;
   border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  color: white;
-  user-select: none;
 }
 
-/* Botón editar */
-.admin-controls .btn.editar {
-  background-color: #4e7b5a;
+.admin-cabanas-toggle:hover {
+  background-color: #3a5a45;
 }
 
-.admin-controls .btn.editar:hover {
-  background-color: #3a5a3e;
+.admin-cabanas-toggle.inactivo {
+  background-color: #b56a42;
 }
 
-/* Botón desactivar */
-.admin-controls .btn.desactivar {
-  background-color: #d32f2f;
+.admin-cabanas-toggle.inactivo:hover {
+  background-color: #9d5536;
 }
 
-.admin-controls .btn.desactivar:hover {
-  background-color: #a72525;
+/* Formulario de edición */
+.admin-cabanas-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-/* Botón activar (cuando está desactivado) */
-.admin-controls .btn.activar {
-  background-color: #2e7d32;
-}
-
-.admin-controls .btn.activar:hover {
-  background-color: #245c25;
-}
-
-/* Estilos del formulario */
-.form-editar label {
+.admin-cabanas-form label {
   display: flex;
   flex-direction: column;
   font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: #2e5339;
-  font-size: 0.95rem;
+  color: #444;
 }
 
-.form-editar input[type="text"],
-.form-editar input[type="number"],
-.form-editar textarea {
-  margin-top: 0.25rem;
+.admin-cabanas-form input[type="text"],
+.admin-cabanas-form input[type="number"],
+.admin-cabanas-form textarea {
   padding: 0.5rem;
   font-size: 1rem;
-  border-radius: 6px;
   border: 1px solid #ccc;
-  resize: vertical;
+  border-radius: 6px;
+  margin-top: 0.25rem;
   font-family: inherit;
 }
 
-.form-editar textarea {
-  min-height: 60px;
+.admin-cabanas-form textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
-.form-editar input[type="file"] {
-  margin-top: 0.3rem;
-}
-
-.botones-form {
+.admin-cabanas-form-buttons {
   display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.botones-form .btn {
-  flex: 1;
-  padding: 0.6rem;
-  font-weight: 700;
-  border-radius: 6px;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.botones-form .btn.guardar {
-  background-color: #4e7b5a;
-}
-
-.botones-form .btn.guardar:hover {
-  background-color: #3a5a3e;
-}
-
-.botones-form .btn.cancelar {
-  background-color: #d32f2f;
-}
-
-.botones-form .btn.cancelar:hover {
-  background-color: #a72525;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }

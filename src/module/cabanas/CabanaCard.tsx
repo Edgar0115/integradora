@@ -5,20 +5,45 @@ type CabanaCardProps = {
   nombre: string;
   descripcion: string;
   precio: number;
-  onUpdate?: (data: { nombre: string; descripcion: string; precio: number; imgSrc: string }) => void;
+  habitaciones: number;
+  banos: number;
+  capacidad: number;
+  activo?: boolean;
+  onToggleActivo?: () => void;
+  onUpdate?: (data: {
+    nombre: string;
+    descripcion: string;
+    precio: number;
+    imgSrc: string;
+    habitaciones: number;
+    banos: number;
+    capacidad: number;
+  }) => void;
 };
 
-const CabanaCard = ({ imgSrc, nombre, descripcion, precio, onUpdate }: CabanaCardProps) => {
-  const [activo, setActivo] = useState(true);
+const CabanaCard = ({
+  imgSrc,
+  nombre,
+  descripcion,
+  precio,
+  habitaciones,
+  banos,
+  capacidad,
+  activo = true,
+  onToggleActivo,
+  onUpdate,
+}: CabanaCardProps) => {
+  const [isActivo, setIsActivo] = useState(activo);
   const [editMode, setEditMode] = useState(false);
 
-  // Estados para editar
   const [formNombre, setFormNombre] = useState(nombre);
   const [formDescripcion, setFormDescripcion] = useState(descripcion);
   const [formPrecio, setFormPrecio] = useState(precio);
   const [formImgSrc, setFormImgSrc] = useState(imgSrc);
+  const [formHabitaciones, setFormHabitaciones] = useState(habitaciones);
+  const [formBanos, setFormBanos] = useState(banos);
+  const [formCapacidad, setFormCapacidad] = useState(capacidad);
 
-  // Para cargar imagen localmente y mostrar preview
   const handleImgChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
@@ -30,24 +55,36 @@ const CabanaCard = ({ imgSrc, nombre, descripcion, precio, onUpdate }: CabanaCar
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setEditMode(false);
-    // Pasar datos al padre si hay callback
     if (onUpdate) {
-      onUpdate({ nombre: formNombre, descripcion: formDescripcion, precio: formPrecio, imgSrc: formImgSrc });
+      onUpdate({
+        nombre: formNombre,
+        descripcion: formDescripcion,
+        precio: formPrecio,
+        imgSrc: formImgSrc,
+        habitaciones: formHabitaciones,
+        banos: formBanos,
+        capacidad: formCapacidad,
+      });
     }
   };
 
+  const toggleActivoLocal = () => {
+    setIsActivo((prev) => !prev);
+    if (onToggleActivo) onToggleActivo();
+  };
+
   return (
-    <div className={`cabana ${activo ? "" : "desactivada"}`}>
+    <div className={`admin-cabanas-card ${!isActivo ? "inactivo" : ""}`}>
       <img src={formImgSrc} alt={formNombre} />
-      <div className="contenido">
+      <div className="admin-cabanas-card-content">
         {editMode ? (
-          <form onSubmit={handleSubmit} className="form-editar">
+          <form onSubmit={handleSubmit} className="admin-cabanas-form">
             <label>
               Nombre:
               <input
                 type="text"
                 value={formNombre}
-                onChange={e => setFormNombre(e.target.value)}
+                onChange={(e) => setFormNombre(e.target.value)}
                 required
               />
             </label>
@@ -55,7 +92,7 @@ const CabanaCard = ({ imgSrc, nombre, descripcion, precio, onUpdate }: CabanaCar
               Descripción:
               <textarea
                 value={formDescripcion}
-                onChange={e => setFormDescripcion(e.target.value)}
+                onChange={(e) => setFormDescripcion(e.target.value)}
                 required
               />
             </label>
@@ -65,7 +102,37 @@ const CabanaCard = ({ imgSrc, nombre, descripcion, precio, onUpdate }: CabanaCar
                 type="number"
                 value={formPrecio}
                 min={0}
-                onChange={e => setFormPrecio(Number(e.target.value))}
+                onChange={(e) => setFormPrecio(Number(e.target.value))}
+                required
+              />
+            </label>
+            <label>
+              Habitaciones:
+              <input
+                type="number"
+                value={formHabitaciones}
+                min={1}
+                onChange={(e) => setFormHabitaciones(Number(e.target.value))}
+                required
+              />
+            </label>
+            <label>
+              Baños:
+              <input
+                type="number"
+                value={formBanos}
+                min={1}
+                onChange={(e) => setFormBanos(Number(e.target.value))}
+                required
+              />
+            </label>
+            <label>
+              Capacidad:
+              <input
+                type="number"
+                value={formCapacidad}
+                min={1}
+                onChange={(e) => setFormCapacidad(Number(e.target.value))}
                 required
               />
             </label>
@@ -73,23 +140,41 @@ const CabanaCard = ({ imgSrc, nombre, descripcion, precio, onUpdate }: CabanaCar
               Foto:
               <input type="file" accept="image/*" onChange={handleImgChange} />
             </label>
-            <div className="botones-form">
-              <button type="submit" className="btn guardar">Guardar</button>
-              <button type="button" className="btn cancelar" onClick={() => setEditMode(false)}>Cancelar</button>
+            <div className="admin-cabanas-form-buttons">
+              <button type="submit" className="admin-cabanas-toggle">
+                Guardar
+              </button>
+              <button
+                type="button"
+                className="admin-cabanas-toggle inactivo"
+                onClick={() => setEditMode(false)}
+              >
+                Cancelar
+              </button>
             </div>
           </form>
         ) : (
           <>
             <h3>{formNombre}</h3>
             <p>{formDescripcion}</p>
-            <p><strong>${formPrecio} por noche</strong></p>
-            <div className="admin-controls">
-              <button className="btn editar" onClick={() => setEditMode(true)}>Editar</button>
+            <p className="precio">${formPrecio} por noche</p>
+            <p className="cabana-detalles">
+              Habitaciones: {formHabitaciones} | Baños: {formBanos} | Capacidad: {formCapacidad} personas
+            </p>
+            <div className="admin-cabanas-card-actions">
               <button
-                className={`btn ${activo ? "desactivar" : "activar"}`}
-                onClick={() => setActivo(!activo)}
+                className="admin-cabanas-edit-btn"
+                onClick={() => setEditMode(true)}
               >
-                {activo ? "Desactivar" : "Activar"}
+                Editar
+              </button>
+              <button
+                className={`admin-cabanas-toggle ${
+                  !isActivo ? "inactivo" : ""
+                }`}
+                onClick={toggleActivoLocal}
+              >
+                {isActivo ? "Desactivar" : "Activar"}
               </button>
             </div>
           </>

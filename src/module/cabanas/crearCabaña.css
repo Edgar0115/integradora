@@ -1,0 +1,116 @@
+/* Estilo exclusivo para CrearCabaña */
+
+.crear-cabana-container {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+}
+
+.crear-cabana-container h2 {
+  text-align: center;
+  color: #2e5b3b;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Botón de volver */
+.btn-volver {
+  background: none;
+  border: none;
+  color: #2e5b3b;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+}
+
+.crear-cabana-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.crear-cabana-form label {
+  font-weight: 600;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+}
+
+.crear-cabana-form input[type="text"],
+.crear-cabana-form input[type="number"],
+.crear-cabana-form select,
+.crear-cabana-form textarea,
+.crear-cabana-form input[type="file"] {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  margin-top: 0.3rem;
+}
+
+.crear-cabana-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Servicios */
+.servicios-container {
+  margin-top: 0.5rem;
+}
+
+.servicios-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Botones */
+.btn {
+  padding: 0.75rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-guardar {
+  background-color: #2e5b3b;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+.btn-guardar:hover {
+  background-color: #254b31;
+}
+
+.btn-cancelar {
+  background-color: #aaa;
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.btn-cancelar:hover {
+  background-color: #888;
+}
